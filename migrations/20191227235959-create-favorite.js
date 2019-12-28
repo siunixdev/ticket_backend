@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('favorites', {
+    return queryInterface.createTable("favorites", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,10 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       creator_user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "users",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
       },
       event_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "events",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +39,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('favorites');
+    return queryInterface.dropTable("favorites");
   }
 };

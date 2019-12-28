@@ -18,6 +18,17 @@ module.exports = (sequelize, DataTypes) => {
   );
   event.associate = function(models) {
     // associations can be defined here
+    event.belongsTo(models.category, {
+      foreignKey: "category_id",
+      as: "category",
+      sourceKey: "id"
+    });
+
+    event.belongsTo(models.user, {
+      foreignKey: "creator_user_id",
+      as: "user",
+      sourceKey: "id"
+    });
   };
   return event;
 };

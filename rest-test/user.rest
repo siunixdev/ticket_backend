@@ -1,0 +1,28 @@
+## USER
+
+### DETAIL
+GET http://localhost:5000/api/v1/profile/1
+
+### UPDATE
+PUT http://localhost:5000/api/v1/profile/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+{
+    "name" : "Abdillah Firdaus",
+    "image" : 2,
+    "no_telp" : "0823 9436 9936"
+}
+
+### Add to favorite
+POST http://localhost:5000/api/v1/favorite/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+{
+    "event_id" : 3
+}
+
+### GET USER FAVORITE LIST
+GET http://localhost:5000/api/v1/user/1/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM

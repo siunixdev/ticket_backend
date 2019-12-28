@@ -12,7 +12,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       category_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "categories",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
       },
       start_time: {
         type: Sequelize.DATE
@@ -36,7 +43,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       creator_user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "users",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
       },
       createdAt: {
         allowNull: false,

@@ -1,0 +1,19 @@
+### SIGNUP
+POST http://localhost:5000/api/v1/signup/
+Content-Type: application/json
+
+{
+    "name"      : "Siunix",
+    "email"     : "abd.siunix@gmail.com",
+    "username"  : "siunix",
+    "password"  : "siunix"
+}
+
+### SIGN
+POST http://localhost:5000/api/v1/sign/
+Content-Type: application/json
+
+{
+    "username"  : "siunix",
+    "password"  : "siunix"
+}

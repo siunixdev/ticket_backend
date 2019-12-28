@@ -1,0 +1,45 @@
+## EVENT
+
+### LIST
+GET http://localhost:5000/api/v1/events/
+
+### DETAIL
+GET http://localhost:5000/api/v1/event/2
+
+### SAVE
+POST http://localhost:5000/api/v1/event/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
+
+{
+    "title" : "Event ke 4",
+    "category_id" : 2,
+    "start_time" : "2019-12-30 18:00:00",
+    "end_time" : "2019-12-30 21:00:00",
+    "price" : 2000000,
+    "description" : "Abdillah event adalah khusus untuk Raisyah",
+    "address" : "Bontaro",
+    "url_maps" : "localhost",
+    "image" : "localhost 2"
+}
+
+### UPDATE
+PUT http://localhost:5000/api/v1/event/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
+
+{
+    "title" : "Abdillah event update",
+    "category_id" : 2,
+    "start_time" : "2019-12-30 18:00:00",
+    "end_time" : "2019-12-30 21:00:00",
+    "price" : 2500000,
+    "description" : "Abdillah event adalah khusus untuk Raisyah",
+    "address" : "Bontaro",
+    "url_maps" : "localhost",
+    "image" : "localhost 2"
+}
+
+### DELETE
+DELETE http://localhost:5000/api/v1/event/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0

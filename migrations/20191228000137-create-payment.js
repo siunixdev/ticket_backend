@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('payments', {
+    return queryInterface.createTable("payments", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,10 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       creator_user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "users",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
       },
       event_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        references: {
+          model: "events",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "set null"
       },
       quantity: {
         type: Sequelize.INTEGER
@@ -37,6 +51,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('payments');
+    return queryInterface.dropTable("payments");
   }
 };
