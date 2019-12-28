@@ -40,6 +40,7 @@ app.group("/api/v1", router => {
   router.post("/event/", authMidlleware.auth, eventController.save);
   router.put("/event/:id", authMidlleware.auth, eventController.update);
   router.delete("/event/:id", authMidlleware.auth, eventController.delete);
+  router.get("/event?:title", eventController.findByTitle);
 
   // USER
   router.get("/profile/:id", userController.detail);

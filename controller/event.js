@@ -1,10 +1,12 @@
 const Model = require("../models");
+const Sequelize = require("sequelize");
 const Category = Model.category;
 const Event = Model.event;
 const Favorite = Model.favorite;
 const Payment = Model.payment;
 const Profile = Model.profile;
 const User = Model.user;
+const Op = Sequelize.Op;
 
 // GET LIST
 exports.list = (req, res) => {
@@ -228,5 +230,44 @@ exports.delete = (req, res) => {
       res.status(500).json({
         massage: "Server response error!"
       });
+    });
+};
+
+exports.findByTitle = (req, res) => {
+  let message = "";
+  let title = req.query.title;
+
+  Event.findAll({
+    attributes: {
+      exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+    },
+    include: [
+      {
+        model: Category,
+        as: "category",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      {
+        model: User,
+        as: "user",
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      }
+    ],
+    where: {
+      title: {
+        [Op.substring]: title
+      }
+    }
+  })
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(error => {
+      message = "Bad request";
+      res.status(400).json({ message });
     });
 };
