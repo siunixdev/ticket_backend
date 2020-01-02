@@ -1,12 +1,16 @@
 const Model = require("../models");
-const Sequelize = require("sequelize");
 const Category = Model.category;
 const Event = Model.event;
 const Favorite = Model.favorite;
 const Payment = Model.payment;
 const Profile = Model.profile;
 const User = Model.user;
+
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const Helper = require("../helper/helper");
+
+// const today = Helper.getDateToday;
 
 // GET LIST
 exports.list = (req, res) => {
@@ -46,7 +50,7 @@ exports.list = (req, res) => {
 exports.detail = (req, res) => {
   let message = "";
 
-  Event.findOne({
+  Event.findAll({
     attributes: {
       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
     },
@@ -71,7 +75,14 @@ exports.detail = (req, res) => {
     }
   })
     .then(data => {
-      res.status(200).json(data);
+      if (!data.length) {
+        message = "Data Not found";
+        res.status(200).json({ message });
+      } else {
+        message = "Success";
+        data = data[0];
+        res.status(200).json(data);
+      }
     })
     .catch(error => {
       message = "Bad request";
@@ -146,7 +157,7 @@ exports.update = (req, res) => {
   })
     .then(data => {
       if (!data.length) {
-        message = "No data";
+        message = "Data not found";
         res.status(200).json({ message });
       } else {
         creator_user_id = data[0].creator_user_id;
@@ -202,7 +213,7 @@ exports.delete = (req, res) => {
   })
     .then(data => {
       if (!data.length) {
-        message = "No data";
+        message = "Data not found";
         res.status(200).json({ message });
       } else {
         creator_user_id = data[0].creator_user_id;
@@ -237,6 +248,8 @@ exports.findByTitle = (req, res) => {
   let message = "";
   let title = req.query.title;
 
+  console.log(title);
+
   Event.findAll({
     attributes: {
       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
@@ -264,7 +277,100 @@ exports.findByTitle = (req, res) => {
     }
   })
     .then(data => {
-      res.status(200).json(data);
+      if (!data.length) {
+        message = "Data Not found";
+        res.status(200).json({ message });
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch(error => {
+      message = "Bad request";
+      res.status(400).json({ message });
+    });
+};
+
+exports.today = (req, res) => {
+  let message = "";
+
+  Event.findAll({
+    attributes: {
+      exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+    },
+    include: [
+      {
+        model: Category,
+        as: "category",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      {
+        model: User,
+        as: "user",
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      }
+    ],
+    where: {
+      start_time: {
+        [Op.substring]: Helper.getDateToday()
+      }
+      // start_time: today
+    }
+  })
+    .then(data => {
+      if (!data.length) {
+        message = "Data Not found";
+        // data = {}
+        res.status(200).json(data);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch(error => {
+      message = "Bad request";
+      res.status(400).json({ message });
+    });
+};
+
+exports.upcoming = (req, res) => {
+  let message = "";
+  let date = Helper.getNextDateFromToday();
+
+  Event.findAll({
+    attributes: {
+      exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+    },
+    include: [
+      {
+        model: Category,
+        as: "category",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      {
+        model: User,
+        as: "user",
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      }
+    ],
+    where: {
+      start_time: {
+        [Op.gt]: date
+      }
+    }
+  })
+    .then(data => {
+      if (!data.length) {
+        res.status(200).json(data);
+      } else {
+        res.status(200).json(data);
+      }
     })
     .catch(error => {
       message = "Bad request";

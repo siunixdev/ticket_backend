@@ -9,6 +9,28 @@ const User = Model.user;
 // GET DETAIL
 exports.detail = (req, res) => {
   let message = "";
+  let user_id = req.user_id;
+
+  User.findOne({
+    attributes: {
+      exclude: ["password", "createdAt", "updatedAt"]
+    },
+    where: {
+      id: user_id
+    }
+  })
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(error => {
+      message = "Bad request";
+      res.status(400).json({ message });
+    });
+};
+
+// GET DETAIL
+exports.detailById = (req, res) => {
+  let message = "";
 
   User.findOne({
     attributes: {
@@ -34,7 +56,7 @@ exports.update = (req, res) => {
 
   const { id } = req.params;
 
-  const { name, image, no_telp } = req.body;
+  const { name, image, no_telp, email } = req.body;
 
   User.findAll({
     where: {
@@ -52,7 +74,8 @@ exports.update = (req, res) => {
             {
               name,
               image,
-              no_telp
+              no_telp,
+              email
             },
             {
               where: { id: user_id }
@@ -126,7 +149,7 @@ exports.addFavorite = (req, res) => {
 // GET USER FAVORITE LIST
 exports.favoriteList = (req, res) => {
   let message = "";
-  let { id } = req.params;
+  let id = req.user_id;
 
   Favorite.findAll({
     where: {

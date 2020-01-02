@@ -12,10 +12,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
 
 {
-    "title" : "Event ke 4",
-    "category_id" : 2,
-    "start_time" : "2019-12-30 18:00:00",
-    "end_time" : "2019-12-30 21:00:00",
+    "title" : "Doing someting more better with lucinta",
+    "category_id" : 3,
+    "start_time" : "2019-12-31 18:00:00",
+    "end_time" : "2019-12-31 21:00:00",
     "price" : 2000000,
     "description" : "Abdillah event adalah khusus untuk Raisyah",
     "address" : "Bontaro",
@@ -24,15 +24,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 }
 
 ### UPDATE
-PUT http://localhost:5000/api/v1/event/1
+PUT http://localhost:5000/api/v1/event/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
 
 {
     "title" : "Abdillah event update",
     "category_id" : 2,
-    "start_time" : "2019-12-30 18:00:00",
-    "end_time" : "2019-12-30 21:00:00",
+    "start_time" : "2020-01-02 20:00:00",
+    "end_time" : "2020-01-02 21:00:00",
     "price" : 2500000,
     "description" : "Abdillah event adalah khusus untuk Raisyah",
     "address" : "Bontaro",
@@ -43,3 +43,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 ### DELETE
 DELETE http://localhost:5000/api/v1/event/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
+
+### EVENT BY TITLE
+GET http://localhost:5000/api/v1/events/search?title=lucin
+
+### TODAY
+GET http://localhost:5000/api/v1/today/events
+
+### UPCOMING
+GET http://localhost:5000/api/v1/upcoming/events

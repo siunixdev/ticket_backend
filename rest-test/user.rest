@@ -1,7 +1,8 @@
 ## USER
 
 ### DETAIL
-GET http://localhost:5000/api/v1/profile/1
+GET http://localhost:5000/api/v1/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
 
 ### UPDATE
 PUT http://localhost:5000/api/v1/profile/
@@ -24,5 +25,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 }
 
 ### GET USER FAVORITE LIST
-GET http://localhost:5000/api/v1/user/1/favorites
+GET http://localhost:5000/api/v1/profile/favorites
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM

@@ -37,19 +37,21 @@ app.group("/api/v1", router => {
   // EVENT
   router.get("/events", eventController.list);
   router.get("/event/:id", eventController.detail);
+  router.get("/today/events", eventController.today);
+  router.get("/upcoming/events", eventController.upcoming);
   router.post("/event/", authMidlleware.auth, eventController.save);
   router.put("/event/:id", authMidlleware.auth, eventController.update);
   router.delete("/event/:id", authMidlleware.auth, eventController.delete);
-  router.get("/event?:title", eventController.findByTitle);
+  router.get("/events/search?:title", eventController.findByTitle);
 
   // USER
-  router.get("/profile/:id", userController.detail);
+  router.get("/profile", authMidlleware.auth, userController.detail);
   router.put("/profile", authMidlleware.auth, userController.update);
 
   // FAVORITE
   router.post("/favorite", authMidlleware.auth, userController.addFavorite);
   router.get(
-    "/user/:id/favorites",
+    "/profile/favorites",
     authMidlleware.auth,
     userController.favoriteList
   );
