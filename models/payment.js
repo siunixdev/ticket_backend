@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   payment.associate = function(models) {
     // associations can be defined here
     payment.belongsTo(models.user, {
-      foreignKey: "user_id",
+      foreignKey: "creator_user_id",
       sourceKey: "id"
     });
 

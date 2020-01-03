@@ -16,6 +16,7 @@ const authController = require("./controller/auth");
 const categoryController = require("./controller/category");
 const eventController = require("./controller/event");
 const userController = require("./controller/user");
+const paymentController = require("./controller/payment");
 
 app.get("/", (req, res) => {
   res.send("Hello express!");
@@ -54,6 +55,38 @@ app.group("/api/v1", router => {
     "/profile/favorites",
     authMidlleware.auth,
     userController.favoriteList
+  );
+
+  // ORDER
+  router.post("/order", authMidlleware.auth, paymentController.addOrder);
+  router.get(
+    "/order/pending",
+    authMidlleware.auth,
+    paymentController.OrderPendingList
+  );
+
+  router.get(
+    "/order/pending/:id",
+    authMidlleware.auth,
+    paymentController.OrderPendingDetail
+  );
+
+  router.put(
+    "/order/confirm",
+    authMidlleware.auth,
+    paymentController.OrderPendingSetConfirm
+  );
+
+  router.put(
+    "/order/approved",
+    authMidlleware.auth,
+    paymentController.OrderPendingSetApproved
+  );
+
+  router.get(
+    "/order/approved",
+    authMidlleware.auth,
+    paymentController.OrderApprovedList
   );
 });
 

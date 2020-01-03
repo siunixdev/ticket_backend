@@ -10,7 +10,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
 
 {
-    "name" : "Abdillah Firdaus",
+    "name" : "Abdillah Firdaus1",
     "image" : 2,
     "no_telp" : "0823 9436 9936"
 }
@@ -21,9 +21,50 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
 
 {
-    "event_id" : 3
+    "event_id" : 4
 }
 
 ### GET USER FAVORITE LIST
 GET http://localhost:5000/api/v1/profile/favorites
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+### Add to Order
+POST http://localhost:5000/api/v1/order/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+{
+    "event_id" : 4,
+    "quantity" : 2
+}
+
+### GET USER ORDER LIST
+GET http://localhost:5000/api/v1/order/pending
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+### GET USER ORDER DETAIL
+GET http://localhost:5000/api/v1/order/pending/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+### ORDER SET CONFIRMED
+PUT http://localhost:5000/api/v1/order/confirm
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+{
+    "id" : 4,
+    "attachment" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSMOrnIhhaEkxvJU49fR6IykoWZTchXR0D2OTS7-VmQNVuoktRa"
+}
+
+### ORDER SET CONFIRMED
+PUT http://localhost:5000/api/v1/order/approved
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc3NDk4MTk3fQ.gJOws58MpLSXFj-bgbDwtI4h3fPa1x1LV53Gx2TRcbM
+
+{
+    "id" : 21
+}
+
+### GET USER APPROVED ORDER LIST
+GET http://localhost:5000/api/v1/order/approved
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNTc4MDM4Nzc5fQ.op5_ulGWD0n-KEuM_sUXkpKlgXhu0kTDMXtyvhYFgtk

@@ -4,7 +4,7 @@
 GET http://localhost:5000/api/v1/events/
 
 ### DETAIL
-GET http://localhost:5000/api/v1/event/2
+GET http://localhost:5000/api/v1/event/4
 
 ### SAVE
 POST http://localhost:5000/api/v1/event/
@@ -24,7 +24,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 }
 
 ### UPDATE
-PUT http://localhost:5000/api/v1/event/2
+PUT http://localhost:5000/api/v1/event/4
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
 
@@ -45,7 +45,7 @@ DELETE http://localhost:5000/api/v1/event/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc3NTEzNDI4fQ.0rKbHoFzO5-uUwUChDRcs9FykAnng5YMcTGY62asat0
 
 ### EVENT BY TITLE
-GET http://localhost:5000/api/v1/events/search?title=lucin
+GET http://localhost:5000/api/v1/events/search?title=music
 
 ### TODAY
 GET http://localhost:5000/api/v1/today/events
